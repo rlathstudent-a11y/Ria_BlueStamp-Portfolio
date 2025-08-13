@@ -34,11 +34,10 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/isymBIAF3qM?si=S9kcGJNzqX2WqV7-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+- I have added a passive buzzer that plays different tones based on how far the obstacle is from the ultrasonic sensor. This alerts the user if there is an object in front of them and tells them how far the object is from them. 
+- I was surprised about how much code I had to write to do something simple like make the passive buzzer play notes. 
+- One challenge that I faced was that my passive buzzer wasn't buzzing. I figured out that my passive buzzer was in the wrong pin on the breadboard. Another challenge was that my passive buzzer would start buzzing when my hand wasn't even in front of the ultrasonic sensor. This happened because I never said in my code for the passive buzzer to stop buzzing. Another challenge was that I ran out of ground pins because I had attached my LEDs and my ultrasonic sensor to them, so there wasn't a ground pin for the passive buzzer. I solved this by removing one wire that was connected to ground and replacing it with a wire that connects ground to the negative rail. This made it so the whole negative rail could serve as ground. This way I was able to connect my passive buzzer to ground. 
+- I need to add a GPS tracker that can connect to my phone and put my project on a glove before my final milestone. 
 
 # First Milestone
 
@@ -46,7 +45,7 @@ For your second milestone, explain what you've worked on since your previous mil
 <iframe width="364" height="647" src="https://www.youtube.com/embed/mYxrYDSK_jU" title="Ria L. Milestone 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For your first milestone, describe what your project is and how you plan to build it. You can include:
-- The important components in my project are the ultrasonic sensor and the LEDs.
+- The important components in my project are the ultrasonic sensor and the LEDs. 
 - I have learned how to code in the Arduino IDE and upload code to the board. I have successfully made multiple LEDs light up using an ultrasonic sensor. When I faced problems such as an LED not lighting up or the code not working, I debugged them successfully.
 - My breadboard is too big, so I want to use a smaller breadboard in the future so I can attach it to a glove. 
 - I want to use a smaller breadboard to attach my project to a glove.
