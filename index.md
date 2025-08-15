@@ -1,15 +1,11 @@
 # Third Eye for the Blind
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
+The Third Eye for the Blind is a gadget that helps visually impaired people know when something is in front of them. It uses an ultrasonic sensor to detect obstacles and then warns the person with sounds coming from a passive buzzer. This way, they have an extra "eye" to help them walk around safely. The device is wearable because it is attached to a glove. It also includes a GPS module, which logs the coordinates of where the person is. I have successfully learned how to code in the Arduino IDE, and I have successfully learned how to attach jumper wires and many other components to the breadboard. 
+
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Ria L | Edgemont Junior/Senior High School | Robotics | Incoming 8th Grader
+| Ria L | Edgemont Junior/Senior High School | Robotics | Incoming 8th Grader |
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
