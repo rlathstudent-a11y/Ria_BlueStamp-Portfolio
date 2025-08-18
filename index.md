@@ -3,8 +3,6 @@
 The Third Eye for the Blind is a gadget that helps visually impaired people know when something is in front of them. It uses an ultrasonic sensor to detect obstacles and then warns the person with sounds coming from a passive buzzer. This way, they have an extra "eye" to help them walk around safely. The device is wearable because it is attached to a glove. It also includes a GPS module, which logs the coordinates of where the person is. I have successfully learned how to code in the Arduino IDE, and I have successfully learned how to attach jumper wires and many other components to the breadboard. 
 
 
-| **Engineer** | **School** | **Area of Interest** | **Grade** |
-|:--:|:--:|:--:|:--:|
 | Ria L | Edgemont Junior/Senior High School | Robotics | Incoming 8th Grader |
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
@@ -16,8 +14,7 @@ The Third Eye for the Blind is a gadget that helps visually impaired people know
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UGtpeNLKfsA?si=hkJR2alHgXosSFWz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
+- Since my previous milestone, I have attached all the components to a glove, and I added a GPS module.
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
