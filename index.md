@@ -264,10 +264,10 @@ void loop(){
 
 | GPS Module Neo 6M	 | Able to detect where the device is and sends the information to the computer | $9.99 | <a href= "https://www.amazon.com/YELUFT-GY-NEO6MV2-Control-Support-Raspberry/dp/B0F2DKWJ4J/ref=sr_1_1_sspa?crid=YIJN3XOV6SIE&dib=eyJ2IjoiMSJ9.Sfj41FocQDHbn31Bq4ZsLFam_mb1JZdLv6uClKiVsxdAfm_IQRs27TNnHQSCoW_wxffi_NMqYrqV_Qy-NqmfkeauXNHFT2NaY1Rc1dMG8TSZU44uKFiK5cTBZRvhxZA235xN2X7WN6bDibB8O9yIOPFGozO5jIFPInZ6cIeya2HtLJs5USvi5oQZxRqu1vbDg9z_lZ7hM_sQDMC3RBaLAnTjPcx2o_MLY_G5KDL4ZPo.q9jueaLO4CDwWURbNXZPYQ9B42FH7HjSzCnN4a_gNtA&dib_tag=se&keywords=gps%2Bmodule%2Bneo%2B6m&qid=1754942626&sprefix=gps%2Bmodule%2Bneo%2B%2Caps%2C102&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"> Link </a> |
 
-# Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
+# Other Resources
 
-To watch the BSE tutorial on how to create a portfolio, click here.
+- [LED Blinking Using Arduino Nano](https://www.instructables.com/LED-BLINKING-USING-ARDUINO-NANO/)
+- [Ultrasonic Sensors](https://newbiely.com/tutorials/arduino-nano/arduino-nano-ultrasonic-sensor)
+- [Active and Passive Buzzers](https://www.circuitbasics.com/how-to-use-active-and-passive-buzzers-on-the-arduino/)
+- [Guide to NEO-6M GPS Module](https://randomnerdtutorials.com/guide-to-neo-6m-gps-module-with-arduino/)
+
