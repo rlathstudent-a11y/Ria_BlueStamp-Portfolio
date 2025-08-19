@@ -15,9 +15,9 @@ The Third Eye for the Blind is a gadget that helps visually impaired people know
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UGtpeNLKfsA?si=hkJR2alHgXosSFWz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 - Since my previous milestone, I have attached all the components to a glove, and I added a GPS module.
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+- My biggest challenge was learning how to code in the Arduino IDE and one of my biggest accomplishments was understanding the hardware aspect of my project and learning about where to put all the jumper wires and the LEDs.
+- I learned a lot about ultrasonic sensors, GPS modules, and passive buzzers. I also learned how to wire my project by myself. Another thing I learned was learning how to problem solve by myself and not just relying on someone else. 
+- In the future after everything I have learned I would like to work on more complicated projects and learn more about other devices such as Raspberry Pi.
 
 
 
@@ -44,26 +44,209 @@ For your first milestone, describe what your project is and how you plan to buil
 - I want to use a smaller breadboard to attach my project to a glove.
 
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
 ![Book logo](model.png)
 
 
-# Code
+# Base Project Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
 ```c++
+#define TRIG_PIN   3 // The Arduino Nano pin connected to TRIG pin of ultrasonic sensor
+#define ECHO_PIN   2 // The Arduino Nano pin connected to ECHO pin of ultrasonic sensor
+int buzzerPin = 8;
+int redpin = 13;
+int bluepin = 4;
+int greenpin = 5;
+int yellowpin = 10;
+float duration_us, distance_cm;
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
+  // begin serial port
+  Serial.begin (9600);
+  // Configure the trigger pin to output mode
+  pinMode(TRIG_PIN, OUTPUT);
+  // Configure the echo pin to input mode
+  
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  tone(buzzerPin, 1000, 2000);
+  pinMode(redpin, OUTPUT);
+  pinMode(bluepin, OUTPUT);
+  pinMode(greenpin, OUTPUT);
+  pinMode(yellowpin, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Produce a 10-microsecond pulse to the TRIG pin.
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
 
+  // Measure the pulse duration from the ECHO pin
+  duration_us = pulseIn(ECHO_PIN, HIGH);
+
+  // calculate the distance
+  distance_cm = 0.017 * duration_us;
+  
+  if (distance_cm<=10){
+    tone(buzzerPin, 440); // A4
+    digitalWrite(redpin,HIGH);
+  
+  } else if (distance_cm<20){
+    tone(buzzerPin, 494); // B4
+    digitalWrite(bluepin, HIGH);
+
+  } else if (distance_cm<30){
+    tone(buzzerPin, 523); // C4
+    digitalWrite(greenpin, HIGH);
+  } else if (distance_cm<40){
+    tone(buzzerPin, 587); // D4
+    digitalWrite(yellowpin,HIGH);
+  } else {
+    noTone(buzzerPin);
+    digitalWrite(redpin, LOW);
+    digitalWrite(bluepin, LOW);
+    digitalWrite(greenpin, LOW);
+    digitalWrite(yellowpin, LOW);
+  }
+delay(1000);
 }
+
 ```
+# GPS device Code
+Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
+
+```c++
+
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
+
+static const int RXPin = 4, TXPin = 3;
+static const uint32_t GPSBaud = 9600;
+
+// The TinyGPS++ object
+TinyGPSPlus gps;
+
+// The serial connection to the GPS device
+SoftwareSerial ss(RXPin, TXPin);
+
+void setup(){
+  Serial.begin(9600);
+  ss.begin(GPSBaud);
+}
+
+void loop(){
+  // This sketch displays information every time a new sentence is correctly encoded.
+  while (ss.available() > 0){
+    gps.encode(ss.read());
+    if (gps.location.isUpdated()){
+      // Latitude in degrees (double)
+      Serial.print("Latitude= "); 
+      Serial.print(gps.location.lat(), 6);      
+      // Longitude in degrees (double)
+      Serial.print(" Longitude= "); 
+      Serial.println(gps.location.lng(), 6); 
+       
+      // Raw latitude in whole degrees
+      Serial.print("Raw latitude = "); 
+      Serial.print(gps.location.rawLat().negative ? "-" : "+");
+      Serial.println(gps.location.rawLat().deg); 
+      // ... and billionths (u16/u32)
+      Serial.println(gps.location.rawLat().billionths);
+      
+      // Raw longitude in whole degrees
+      Serial.print("Raw longitude = "); 
+      Serial.print(gps.location.rawLng().negative ? "-" : "+");
+      Serial.println(gps.location.rawLng().deg); 
+      // ... and billionths (u16/u32)
+      Serial.println(gps.location.rawLng().billionths);
+
+      // Raw date in DDMMYY format (u32)
+      Serial.print("Raw date DDMMYY = ");
+      Serial.println(gps.date.value()); 
+
+      // Year (2000+) (u16)
+      Serial.print("Year = "); 
+      Serial.println(gps.date.year()); 
+      // Month (1-12) (u8)
+      Serial.print("Month = "); 
+      Serial.println(gps.date.month()); 
+      // Day (1-31) (u8)
+      Serial.print("Day = "); 
+      Serial.println(gps.date.day()); 
+
+      // Raw time in HHMMSSCC format (u32)
+      Serial.print("Raw time in HHMMSSCC = "); 
+      Serial.println(gps.time.value()); 
+
+      // Hour (0-23) (u8)
+      Serial.print("Hour = "); 
+      Serial.println(gps.time.hour()); 
+      // Minute (0-59) (u8)
+      Serial.print("Minute = "); 
+      Serial.println(gps.time.minute()); 
+      // Second (0-59) (u8)
+      Serial.print("Second = "); 
+      Serial.println(gps.time.second()); 
+      // 100ths of a second (0-99) (u8)
+      Serial.print("Centisecond = "); 
+      Serial.println(gps.time.centisecond()); 
+
+      // Raw speed in 100ths of a knot (i32)
+      Serial.print("Raw speed in 100ths/knot = ");
+      Serial.println(gps.speed.value()); 
+      // Speed in knots (double)
+      Serial.print("Speed in knots/h = ");
+      Serial.println(gps.speed.knots()); 
+      // Speed in miles per hour (double)
+      Serial.print("Speed in miles/h = ");
+      Serial.println(gps.speed.mph()); 
+      // Speed in meters per second (double)
+      Serial.print("Speed in m/s = ");
+      Serial.println(gps.speed.mps()); 
+      // Speed in kilometers per hour (double)
+      Serial.print("Speed in km/h = "); 
+      Serial.println(gps.speed.kmph()); 
+
+      // Raw course in 100ths of a degree (i32)
+      Serial.print("Raw course in degrees = "); 
+      Serial.println(gps.course.value()); 
+      // Course in degrees (double)
+      Serial.print("Course in degrees = "); 
+      Serial.println(gps.course.deg()); 
+
+      // Raw altitude in centimeters (i32)
+      Serial.print("Raw altitude in centimeters = "); 
+      Serial.println(gps.altitude.value()); 
+      // Altitude in meters (double)
+      Serial.print("Altitude in meters = "); 
+      Serial.println(gps.altitude.meters()); 
+      // Altitude in miles (double)
+      Serial.print("Altitude in miles = "); 
+      Serial.println(gps.altitude.miles()); 
+      // Altitude in kilometers (double)
+      Serial.print("Altitude in kilometers = "); 
+      Serial.println(gps.altitude.kilometers()); 
+      // Altitude in feet (double)
+      Serial.print("Altitude in feet = "); 
+      Serial.println(gps.altitude.feet()); 
+
+      // Number of satellites in use (u32)
+      Serial.print("Number os satellites in use = "); 
+      Serial.println(gps.satellites.value()); 
+
+      // Horizontal Dim. of Precision (100ths-i32)
+      Serial.print("HDOP = "); 
+      Serial.println(gps.hdop.value()); 
+    }
+  }
+}
+
+```
+
+
+
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
